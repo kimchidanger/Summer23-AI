@@ -4,4 +4,4 @@ if (choice == "y"):
     print(choice2*60)
 elif (choice == "n"):
     choice3 = int (input("how mnay minutes?"))
-    print(choice3/60)
+    print(choice3/60) 
