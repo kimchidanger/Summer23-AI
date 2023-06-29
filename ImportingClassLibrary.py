@@ -1,4 +1,4 @@
-import PythonClasses
+from PythonClasses import Student
 
-student = PythonClasses.Student("Eli", "history")
+student = Student("Eli", "history")
 student.myfunc()
