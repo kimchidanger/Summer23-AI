@@ -51,16 +51,15 @@ place_to_eat(Store, Place) :-
 type_location(Kind, Place) :-
     restaurant(Store, Kind, Place).
 
-restaurant_serves(Restaurant, Dish) :-
-    restaurant(Store, Kind, Place),
-    servesAll(Kind, Dishes),
-    member(Dish, Dishes),
-    member(Restaurant, Store).
-
-restaurant_type(Restaurant, Type) :-
-    restaurant(Store, Kind, Place),
-    dishesIn(Diet, Dishes),
-    servesAll(Kind, Dishes), 
+every(Kinder, Dieter) :-
+    (diet_kind(Kind, Dish1) :-
+        servesAll(Kind, Dishes1), 
+        member(Dish1, Dishes1)),
+    (diet_type(Diet, Dish2) :-
+        dishesIn(Diet, Dishes),
+        member(Dish2, Dishes))
+    member(Kinder, Kind),
+    member(Dieter, Diet).
 
 
 
