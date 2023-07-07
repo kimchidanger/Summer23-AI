@@ -9,18 +9,10 @@ servesAll(mexican, [tacos, beans, rice, enchiladas, fish_tacos]).
 servesAll(pizza_place, [pizza, salad, garlic_bread]).
 servesAll(thai, [rice, noodles, larb, pad_thai]).
 
-serves(Kind, Dish) :- 
-    servesAll(Kind, Dishes), 
-    member(Dish, Dishes).
-
 dishesIn(vegetarian, [beans, bagan_bharta, enchiladas, falafel, hummus, pizza, salad, soup, tempura, onion_rings, naan, papadam, bread, rice, noodles, pita, garlic_bread, pasta, fries]).
 dishesIn(meat, [burgers, enchiladas, gyros, pad_thai, pizza, steak, sandwiches,fried_chicken, tacos, tandoori, larb]).
 dishesIn(seafood, [snapper, cioppino, sashimi, shrimp, clams, fish_tacos, tempura]).
 dishesIn(starch, [naan, papadam, bread, rice, noodles, pita, garlic_bread, pasta, fries]).
-
-type(Diet, Dish) :-
-    dishesIn(Diet, Dishes),
-    member(Dish, Dishes).
 
 restaurant(yans, chinese, thayer_street).
 restaurant(pizza_marvin, pizza_place, fox_point).
@@ -42,6 +34,16 @@ restaurant(shake_shack, burger_place, thayer_street).
 restaurant(al_forno, italian, fox_point).
 restaurant(lims, thai, wayland).
 
+dishtype_restuarant(vegetarian,[yans, pizza_marvin, bajas, andreas, chinatown, kabob_n_curry, waterman_grille, dolores, tallulahs, red_stripe, pasta_beach, haruki, heng, mikes, east_side_pocokets, bees, shake_shack, al_forno, lims]).
+
+serves(Kind, Dish) :- 
+    servesAll(Kind, Dishes), 
+    member(Dish, Dishes).
+
+type(Diet, Dish) :-
+    dishesIn(Diet, Dishes),
+    member(Dish, Dishes).
+
 eatery(Store, Kind) :-
     restaurant(Store, Kind, Place).
 
@@ -51,15 +53,7 @@ place_to_eat(Store, Place) :-
 type_location(Kind, Place) :-
     restaurant(Store, Kind, Place).
 
-every(Kinder, Dieter) :-
-    (diet_kind(Kind, Dish1) :-
-        servesAll(Kind, Dishes1), 
-        member(Dish1, Dishes1)),
-    (diet_type(Diet, Dish2) :-
-        dishesIn(Diet, Dishes),
-        member(Dish2, Dishes))
-    member(Kinder, Kind),
-    member(Dieter, Diet).
-
-
+dr(Type, Restaurant) :-
+    dishtype_restuarant(Type, Restaurants),
+    member(Restaurant, Restaurants).
 
